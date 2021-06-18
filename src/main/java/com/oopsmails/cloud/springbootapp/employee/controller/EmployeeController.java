@@ -24,27 +24,32 @@ public class EmployeeController {
     @GetMapping("")
 // @PreAuthorize("#oauth2.hasScope('read')")
     public List<Employee> findAll() {
+        log.info("findAll ...");
         return repository.findAll();
     }
 
     @PostMapping("")
 // @PreAuthorize("#oauth2.hasScope('write') and #oauth2.hasScope('read')")
     public Employee add(@RequestBody Employee employee) {
+        log.info("adding ... {}", employee);
         return repository.add(employee);
     }
 
     @GetMapping("/{id}")
     public Employee findById(@PathVariable("id") Long id) {
+        log.info("find by employeeId ... {}", id);
         return repository.findById(id);
     }
 
     @GetMapping("/department/{departmentId}")
     public List<Employee> findByDepartment(@PathVariable("departmentId") Long departmentId) {
+        log.info("find by departmentId ... {}", departmentId);
         return repository.findByDepartment(departmentId);
     }
 
     @GetMapping("/organization/{organizationId}")
     public List<Employee> findByOrganization(@PathVariable("organizationId") Long organizationId) {
+        log.info("find by organizationId ... {}", organizationId);
         return repository.findByOrganization(organizationId);
     }
 }
